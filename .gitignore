@@ -1,0 +1,10 @@
+# IDE stuff
+.idea
+
+# Kitchen
+.kitchen
+
+# Bundler
+# I want to work this anywhere and forever
+# Clean install on every test, please!
+Gemfile.lock

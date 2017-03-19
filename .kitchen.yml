@@ -1,0 +1,82 @@
+---
+_attributes: &attributes
+  java:
+    install_flavor: openjdk
+    jdk_version: 7
+  allure_commandline:
+    version: 1.5.0
+    install_location: /usr/share/allure/allure-commandline/default
+    binary_location: /usr/bin/allure-default
+    install_location_pattern: /usr/share/allure/allure-commandline/%s
+    github_api_token: <%= ENV['GITHUB_API_TOKEN'] %>
+  allure_commandline_integration:
+    github_api_token: <%= ENV['GITHUB_API_TOKEN'] %>
+    suite:
+      default:
+        binary: /tmp/allure/bin/default
+      with-version:
+        binary: /tmp/allure/bin/with-version
+        version: 1.5.1
+      with-path:
+        binary: /tmp/allure/bin/with-path
+        path: /tmp/allure/installation/1.5.0/with-path
+      with-multiple-links:
+        binary: /tmp/allure/bin/with-multiple-symlinks
+        links:
+          - /tmp/allure/link/1.5.0/with-multiple-links/alpha
+          - /tmp/allure/link/1.5.0/with-multiple-links/beta
+      deleted-with-path:
+        path: /tmp/allure/installation/1.5.0/deleted
+        binary: /tmp/allure/bin/deleted
+      deleted-with-version:
+        # should not be the same as in with-version, uh-oh
+        version: 1.5.2
+        binary: /tmp/allure/bin/deleted
+      deleted-with-multiple-links:
+        binary: /tmp/allure/bin/deleted-with-multiple-links
+        path: /tmp/allure/installation/1.5.0/deleted-with-multiple-links
+        links:
+          - /tmp/allure/link/1.5.0/deleted-with-multiple-links/alpha
+          - /tmp/allure/link/1.5.0/deleted-with-multiple-links/beta
+      acceptance:
+        binary_location_format: /tmp/allure/bin/acceptance-%s
+        path_format: /tmp/allure/installation/acceptance-%s
+        versions:
+          - 1.4.19
+          - 1.4.20
+          - 1.4.22
+          - 1.4.23.HOTFIX1
+          - 1.5.0
+          - 1.5.1
+          - 1.5.2
+
+driver:
+  name: docker
+  use_sudo: false
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+  attributes: *attributes
+
+platforms:
+  - name: ubuntu-12.04
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: centos-7.2
+  - name: centos-6.5
+  - name: debian-7.11
+  - name: debian-8.6
+  - name: fedora-21
+  - name: fedora-22
+  - name: fedora-23
+  - name: fedora-24
+  - name: fedora-25
+
+suites:
+  - name: default
+    run_list:
+      - recipe[allure-commandline-integration::default]
+    attributes: *attributes
