@@ -75,7 +75,7 @@ end
 
 Installs Allure in default location 
 (`/usr/share/allure/allure-commandline`), and symlinks binary to 
-`/usr/local/bin/allure`.
+`/usr/bin/allure`.
 
 ## Drawbacks
 
