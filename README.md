@@ -2,6 +2,10 @@
 
 Installs [Allure Framework][allure] commandline utility.
 
+Master branch: [![Travis/master](https://img.shields.io/travis/etki/cookbook-allure-commandline/master.svg?style=flat-square)](https://travis-ci.org/etki/cookbook-allure-commandline/branches)
+
+Dev branch: [![Travis/dev](https://img.shields.io/travis/etki/cookbook-allure-commandline/dev.svg?style=flat-square)](https://travis-ci.org/etki/cookbook-allure-commandline/branches)
+
 ## Requirements
 
 ### Platforms
